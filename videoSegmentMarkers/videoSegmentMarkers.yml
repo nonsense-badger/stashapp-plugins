@@ -1,0 +1,19 @@
+name: Video Chapter Markers
+description: Create markers from where scene cuts are detected
+version: 1.0
+url: https://github.com/stashapp/CommunityScripts/tree/main/plugins/videoChapterMarkers
+exec:
+  - python
+  - "{pluginDir}/videoSegmentMarkers.py"
+interface: raw
+tasks:
+  - name: "Process All Videos"
+    description: Create stash markers for all videos where scene cuts are detected. Skips videos with "segments-detected" tag.
+    defaultArgs:
+      mode: processAll
+
+hooks:
+  - name: Create Markers on Scene Update
+    description: Create markers for videos where scene cuts are detected.
+    triggeredBy:
+      - Scene.Update.Post
